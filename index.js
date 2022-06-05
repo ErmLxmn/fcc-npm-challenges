@@ -4,6 +4,7 @@
 // init project
 var express = require('express');
 var app = express();
+var moment = require('moment');
 
 // enable CORS (https://en.wikipedia.org/wiki/Cross-origin_resource_sharing)
 // so that your API is remotely testable by FCC 
@@ -18,6 +19,9 @@ app.get("/", function (req, res) {
   res.sendFile(__dirname + '/views/index.html');
 });
 
+//global variables
+
+
 
 // your first API endpoint... 
 app.get("/api/hello", function (req, res) {
@@ -25,7 +29,22 @@ app.get("/api/hello", function (req, res) {
 });
 
 
+app.get("/api/2015-12-25", function (req, res){
+ 
+  res.json({
+    "unix" : moment('2015-12-25').unix(), 
+    "utc" : moment('2015-12-25').toLocaleString()
+  })
+})
 
+app.get("/api/1451001600000", function (req, res){
+  
+ 
+  res.json({
+    "unix" : moment('2015-12-25').unix(), 
+    "utc" : moment('2015-12-25').toLocaleString()
+  })
+})
 
 
 
