@@ -34,12 +34,6 @@ app.get("/api/:data", function (req, res){
   let unix, utc;
   let response = {};
 
-  if(!data){
-    unix = new Date().getTime()
-    utc = new Date().toUTCString();
-  }
-
-
   if(data.includes("-")){
     unix = new Date(data).getTime();
     utc = new Date(data).toUTCString();
@@ -55,6 +49,14 @@ app.get("/api/:data", function (req, res){
 
   return res.json(response)
   
+})
+
+app.get("/api/" , function (req, res){
+  let unix = new Date().getTime(),
+      utc = new Date().toUTCString(),
+      response = {unix , utc};
+
+  return res.json(response)
 })
 
 
