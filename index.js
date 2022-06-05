@@ -32,16 +32,16 @@ app.get("/api/hello", function (req, res) {
 app.get("/api/:data", function (req, res){
   let data = req.params.data;
 
-  if(!isNaN(Date.parse(data))){
   let unix, utc;
   let response = {};
 
-  if(data.includes("-")){
+  if(!isNaN(Date.parse(data))){
     unix = new Date(data).getTime();
     utc = new Date(data).toUTCString();
   }else{
-    unix = parseInt(data);
-    utc = new Date(unix).toUTCString();
+    data = parseInt(data);
+    unix = new Date(data).getTime();
+    utc = new Date(data).toUTCString();
   }
 
   response = {unix , utc};
@@ -50,8 +50,7 @@ app.get("/api/:data", function (req, res){
       return res.json({error : "Invalid Date"})
 
   return res.json(response)
-  }
-return res.json({error : "Invalid Date"})
+  
 })
 
 app.get("/api/" , function (req, res){
