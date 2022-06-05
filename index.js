@@ -32,7 +32,7 @@ app.get("/api/hello", function (req, res) {
 app.get("/api/:data", function (req, res){
   let data = req.params.data;
 
-  if(new Date(data)){
+  if(!isNaN(Date.parse(data))){
   let unix, utc;
   let response = {};
 
@@ -51,7 +51,7 @@ app.get("/api/:data", function (req, res){
 
   return res.json(response)
   }
-return res.json({})
+return res.json({error : "Invalid Date"})
 })
 
 app.get("/api/" , function (req, res){
