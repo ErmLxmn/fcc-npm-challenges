@@ -31,6 +31,8 @@ app.get("/api/hello", function (req, res) {
 
 app.get("/api/:data", function (req, res){
   let data = req.params.data;
+
+  if(new Date(data)){
   let unix, utc;
   let response = {};
 
@@ -48,7 +50,8 @@ app.get("/api/:data", function (req, res){
       return res.json({error : "Invalid Date"})
 
   return res.json(response)
-  
+  }
+return res.json({})
 })
 
 app.get("/api/" , function (req, res){
@@ -57,6 +60,7 @@ app.get("/api/" , function (req, res){
       response = {unix , utc};
 
   return res.json(response)
+  
 })
 
 
